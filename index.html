@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="نظام التقييم المعياري PRO - نظام تقييم المرافق الصحية المتكامل - الجمهورية اليمنية">
+    <meta name="author" content="د/صلاح الأهدل - وزارة الصحة والبيئة - محافظة إب">
+    <meta name="theme-color" content="#8B0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="keywords" content="تقييم,مرافق صحية,يمن,معيار,PRO,JCI,HHFA,CBAHI,ISO,وزارة الصحة,إب,صلاح الأهدل">
+
+    <title>معيار PRO v3.0 | نظام تقييم المرافق الصحية | الجمهورية اليمنية</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- ============================================================
+         أنماط مخصصة للهيدر الموسّط والفوتر الاحترافي والـ Modals
+         ============================================================ -->
+    <style>
+        /* ========== CSS Variables ========== */
+        :root {
+            --font-heading: 'Amiri', 'Noto Naskh Arabic', 'Cairo', serif;
+            --font-body: 'Noto Naskh Arabic', 'Amiri', 'Tajawal', serif;
+            --gold-100: #f0d878;
+            --gold-300: #D4AF37;
+            --gold-600: #8B6914;
+            --neon-red: #ff073a;
+            --neon-green: #39ff14;
+            --neon-cyan: #00f3ff;
+            --neon-gold: #ffd700;
+            --neon-purple: #bf00ff;
+            --bg-primary: #0a0a0f;
+            --bg-elevated: #141414;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --text-muted: #888;
+            --text-tertiary: #666;
+            --border-subtle: rgba(212, 175, 55, 0.2);
+            --yemen-black: #0a0a0f;
+            --transition-base: all 0.3s ease;
+            --transition-fast: all 0.2s ease;
+            --radius-sm: 6px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+        }
+
+        /* ========== HEADER CENTERED ========== */
+        .official-header-centered {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 1rem 0.8rem;
+            background: linear-gradient(180deg,
+                rgba(139, 0, 0, 0.12) 0%,
+                rgba(10, 10, 15, 0.95) 35%,
+                rgba(14, 16, 24, 0.98) 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            text-align: center;
+            min-height: 140px;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-emblem-wrapper {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-emblem-glow {
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.25), transparent 70%);
+            animation: headerGlowPulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes headerGlowPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.12); }
+        }
+
+        .header-emblem-centered {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+            animation: headerEmblemFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes headerEmblemFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .header-emblem-fallback-centered {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            color: #D4AF37;
+            font-weight: 700;
+            font-size: 1rem;
+            font-family: var(--font-heading);
+        }
+
+        .header-titles-centered {
+            text-align: center;
+            z-index: 2;
+            line-height: 1.4;
+        }
+
+        .header-titles-centered .title-main {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #D4AF37;
+            margin: 0;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.35);
+        }
+
+        .header-titles-centered .title-sub {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #C9A84C;
+            margin: 0.1rem 0;
+            letter-spacing: 0.3px;
+        }
+
+        .header-titles-centered .title-office {
+            font-family: var(--font-heading);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(200, 180, 140, 0.85);
+            margin: 0;
+            letter-spacing: 0.2px;
+        }
+
+        .header-controls-bar {
+            position: absolute;
+            top: 0.8rem;
+            left: 1rem;
+            right: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 10;
+        }
+
+        .btn-icon-header {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(22, 25, 32, 0.75);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: #D4AF37;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 0.95rem;
+        }
+
+        .btn-icon-header:hover {
+            background: rgba(212, 175, 55, 0.18);
+            border-color: #D4AF37;
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.25);
+            transform: scale(1.08);
+        }
+
+        .header-user-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-username-badge {
+            font-size: 0.8rem;
+            color: rgba(212, 175, 55, 0.9);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            background: rgba(22, 25, 32, 0.75);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+        }
+
+        /* ========== MODALS ========== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            transform: scale(0.95) translateY(10px);
+            transition: all 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+            direction: rtl;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--gold-100);
+            font-size: 1.2rem;
+            font-family: var(--font-heading);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.4rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--neon-red);
+            background: rgba(255, 7, 58, 0.1);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* ========== FORM ELEMENTS ========== */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-family: var(--font-heading);
+        }
+
+        .form-input {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--gold-300);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        select.form-input {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23D4AF37' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 1rem center;
+            padding-left: 2.5rem;
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.2rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-300), var(--gold-600));
+            color: var(--yemen-black);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.15);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold-300);
+            color: var(--gold-100);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .btn-danger {
+            background: rgba(255, 7, 58, 0.15);
+            border: 1px solid rgba(255, 7, 58, 0.3);
+            color: var(--neon-red);
+        }
+
+        .btn-danger:hover {
+            background: rgba(255, 7, 58, 0.25);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* ========== TOAST ========== */
+        .toast-container {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .toast {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-right: 4px solid var(--gold-300);
+            color: var(--text-primary);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: slideIn 0.4s ease;
+            min-width: 280px;
+            max-width: 400px;
+        }
+
+        .toast.hiding {
+            animation: slideOut 0.4s ease forwards;
+        }
+
+        .toast.success { border-right-color: var(--neon-green); }
+        .toast.error { border-right-color: var(--neon-red); }
+        .toast.warning { border-right-color: #f39c12; }
+        .toast.info { border-right-color: var(--neon-cyan); }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+
+        /* ========== LOADING ========== */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 15, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            color: var(--gold-300);
+        }
+
+        .loading-spinner i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .loading-spinner p {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* ========== FOOTER ========== */
+        .app-footer-pro {
+            position: relative;
+            background: linear-gradient(180deg,
+                rgba(10, 10, 15, 0.97) 0%,
+                rgba(8, 8, 12, 0.99) 50%,
+                rgba(4, 4, 8, 1) 100%);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: #b0b0b0;
+            font-family: var(--font-body);
+            margin-top: auto;
+            animation: footerFadeIn 0.8s ease both;
+        }
+
+        @keyframes footerFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .app-footer-pro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(0, 243, 255, 0.4),
+                rgba(212, 175, 55, 0.6),
+                rgba(0, 243, 255, 0.4),
+                transparent);
+            z-index: 1;
+        }
+
+        .footer-divider-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.7rem 2rem 0;
+            gap: 1rem;
+        }
+
+        .footer-divider-ornament .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(212, 175, 55, 0.5),
+                rgba(212, 175, 55, 0.7),
+                rgba(212, 175, 55, 0.5),
+                transparent);
+        }
+
+        .footer-divider-ornament .icon {
+            color: #D4AF37;
+            font-size: 0.75rem;
+            animation: starPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes starPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.25); }
+        }
+
+        .footer-content-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            padding: 1.5rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-col { padding: 0.3rem; }
+        .footer-col-brand { text-align: center; }
+
+        .footer-brand-logo-wrapper {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-brand-logo-glow {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent 70%);
+            animation: headerGlowPulse 3s ease-in-out infinite;
+        }
+
+        .footer-brand-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.35));
+        }
+
+        .footer-logo-fallback {
+            display: none;
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 0.4rem;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            color: #D4AF37;
+            font-size: 1.4rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-brand-name {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #D4AF37;
+            margin: 0.2rem 0;
+        }
+
+        .footer-brand-desc {
+            font-size: 0.72rem;
+            color: #999;
+            margin: 0.15rem 0;
+            line-height: 1.5;
+        }
+
+        .footer-version-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #D4AF37;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            margin-top: 0.3rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col-title {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #D4AF37;
+            margin: 0 0 0.7rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-col-title i { font-size: 0.75rem; }
+
+        .footer-links-list,
+        .footer-contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links-list li { margin-bottom: 0.45rem; }
+
+        .footer-links-list li a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.78rem;
+        }
+
+        .footer-links-list li a:hover {
+            color: #D4AF37;
+            transform: translateX(-4px);
+        }
+
+        .footer-links-list li a i {
+            font-size: 0.6rem;
+            color: #D4AF37;
+        }
+
+        .footer-contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #b0b0b0;
+            font-size: 0.78rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .footer-contact-list li i {
+            color: #D4AF37;
+            font-size: 0.7rem;
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .footer-badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .footer-badge-item {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #D4AF37;
+            padding: 0.25rem 0.55rem;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .footer-badge-item:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Footer Bottom Bar */
+        .footer-bottom-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            font-size: 0.7rem;
+            color: #888;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            text-align: center;
+        }
+
+        .footer-bottom-bar .left,
+        .footer-bottom-bar .center,
+        .footer-bottom-bar .right {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .footer-bottom-bar .center { text-align: center; }
+        .footer-bottom-bar .right { text-align: left; }
+
+        .footer-bottom-bar strong {
+            color: #D4AF37;
+            font-weight: 700;
+        }
+
+        .footer-sig-hash {
+            font-family: 'Courier New', monospace;
+            font-size: 0.62rem;
+            color: rgba(212, 175, 55, 0.5);
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 992px) {
+            .footer-content-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                max-width: 95vw;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-content-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-links-list li a { justify-content: center; }
+            .footer-contact-list li { justify-content: center; }
+            .footer-badges-container { justify-content: center; }
+            .footer-col-title { justify-content: center; }
+            .footer-bottom-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.3rem;
+            }
+            .footer-bottom-bar .right { text-align: center; }
+            .header-titles-centered .title-main { font-size: 1.2rem; }
+            .header-titles-centered .title-sub { font-size: 0.9rem; }
+            .header-emblem-centered,
+            .header-emblem-fallback-centered {
+                width: 50px;
+                height: 50px;
+            }
+            .header-emblem-wrapper {
+                width: 62px;
+                height: 62px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================================
+         AUTH CHECK (runs before page renders)
+         ============================================================ -->
+    <script>
+        (function() {
+            const session = localStorage.getItem('pro_session') || sessionStorage.getItem('pro_session');
+            if (!session) {
+                window.location.replace('login.html');
+                return;
+            }
+            try {
+                const data = JSON.parse(session);
+                if (!data.expiresAt || data.expiresAt <= Date.now()) {
+                    localStorage.removeItem('pro_session');
+                    sessionStorage.removeItem('pro_session');
+                    window.location.replace('login.html');
+                }
+            } catch (e) {
+                window.location.replace('login.html');
+            }
+        })();
+    </script>
+
+    <!-- ============================================================
+         MAIN APPLICATION
+         ============================================================ -->
+    <div class="app-container active" id="appContainer">
+        <!-- ==================== Official Header ==================== -->
+        <header class="official-header-centered">
+            <div class="header-controls-bar">
+                <button class="btn-icon-header" onclick="app.toggleSidebar()" title="القائمة الرئيسية" aria-label="فتح القائمة">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="header-user-group">
+                    <span id="userDisplay" class="header-username-badge"></span>
+                    <button class="btn-icon-header" onclick="app.logout()" title="تسجيل الخروج" aria-label="تسجيل الخروج">
+                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="header-emblem-wrapper">
+                <div class="header-emblem-glow" aria-hidden="true"></div>
+                <img src="images/yemen-emblem.png"
+                     alt="شعار الجمهورية اليمنية"
+                     class="header-emblem-centered"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="header-emblem-fallback-centered" aria-hidden="true">YM</div>
+            </div>
+
+            <div class="header-titles-centered">
+                <h1 class="title-main">الجمهورية اليمنية</h1>
+                <h2 class="title-sub">وزارة الصحة والبيئة</h2>
+                <h3 class="title-office">مكتب الصحة والبيئة - محافظة إب</h3>
+            </div>
+        </header>
+
+        <div class="app-body">
+            <!-- Sidebar Overlay (Mobile) -->
+            <div class="sidebar-overlay" id="sidebarOverlay" onclick="app.toggleSidebar(false)"></div>
+
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar" id="sidebar" role="navigation" aria-label="القائمة الرئيسية">
+                <div class="sidebar-header">
+                    <img src="images/yemen-emblem.png"
+                         alt="شعار الجمهورية"
+                         class="sidebar-emblem"
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="sidebar-emblem-fallback" aria-hidden="true">YM</div>
+                    <div class="sidebar-title">الجمهورية اليمنية</div>
+                    <div class="sidebar-subtitle">وزارة الصحة والبيئة</div>
+                    <div class="sidebar-brand">
+                        <img src="images/maeyar-logo.png" alt="شعار معيار" style="width:28px;height:28px;object-fit:contain;margin-inline-end:0.4rem;filter:drop-shadow(0 0 4px rgba(212,175,55,0.4));" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                        <i class="fas fa-hospital-alt" aria-hidden="true" style="display:none;"></i>
+                        <span class="gold-text">معيار</span>
+                    </div>
+                </div>
+
+                <nav class="nav-menu" role="tablist">
+                    <a class="nav-link active" data-page="dashboard" onclick="app.navigate('dashboard')" role="tab" aria-selected="true">
+                        <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                        <span>لوحة التحكم</span>
+                    </a>
+                    <a class="nav-link" data-page="facilities" onclick="app.navigate('facilities')" role="tab" aria-selected="false">
+                        <i class="fas fa-hospital" aria-hidden="true"></i>
+                        <span>المرافق الصحية</span>
+                    </a>
+                    <a class="nav-link" data-page="assessment" onclick="app.navigate('assessment')" role="tab" aria-selected="false">
+                        <i class="fas fa-clipboard-check" aria-hidden="true"></i>
+                        <span>تقييم جديد</span>
+                    </a>
+                    <a class="nav-link" data-page="reports" onclick="app.navigate('reports')" role="tab" aria-selected="false">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>
+                        <span>التقارير</span>
+                    </a>
+                    <a class="nav-link" data-page="standards" onclick="app.navigate('standards')" role="tab" aria-selected="false">
+                        <i class="fas fa-book" aria-hidden="true"></i>
+                        <span>دليل المعايير</span>
+                    </a>
+                    <a class="nav-link" data-page="analytics" onclick="app.navigate('analytics')" role="tab" aria-selected="false">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        <span>التحليلات</span>
+                    </a>
+                    <a class="nav-link" data-page="settings" onclick="app.navigate('settings')" role="tab" aria-selected="false">
+                        <i class="fas fa-cog" aria-hidden="true"></i>
+                        <span>إعدادات النظام</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="footer-title">الجمهورية اليمنية</div>
+                    <div class="footer-text">&copy; 2026 نظام التقييم المعياري PRO</div>
+                    <div class="footer-text">وزارة الصحة والبيئة - إب</div>
+                    <div class="footer-sig">
+                        <div class="sig-neon-text" style="font-size: 0.85rem;">
+                            <i class="fas fa-signature" style="margin-inline-end: 0.3rem;" aria-hidden="true"></i>
+                            Dr/Salah Al-ahdel
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content" id="mainContent" role="main">
+                <!-- Content rendered dynamically by JavaScript -->
+            </main>
+        </div>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer class="app-footer-pro">
+            <div class="footer-divider-ornament">
+                <div class="line"></div>
+                <div class="icon"><i class="fas fa-star"></i></div>
+                <div class="line"></div>
+            </div>
+
+            <div class="footer-content-grid">
+                <!-- Brand Column -->
+                <div class="footer-col footer-col-brand">
+                    <div class="footer-brand-logo-wrapper">
+                        <div class="footer-brand-logo-glow"></div>
+                        <img src="images/yemen-emblem.png"
+                             alt="شعار اليمن"
+                             class="footer-brand-logo"
+                             loading="lazy"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="footer-logo-fallback" aria-hidden="true">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                    <h4 class="footer-brand-name">نظام التقييم المعياري PRO</h4>
+                    <p class="footer-brand-desc">نظام التقييم الإلكتروني المتكامل للمرافق الصحية العامة والخاصة</p>
+                    <span class="footer-version-tag">v3.0.0 PRO</span>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h5 class="footer-col-title"><i class="fas fa-link"></i> روابط سريعة</h5>
+                    <ul class="footer-links-list">
+                        <li><a href="#" onclick="app.navigate('dashboard'); return false;"><i class="fas fa-chevron-left"></i> لوحة التحكم</a></li>
+                        <li><a href="#" onclick="app.navigate('facilities'); return false;"><i class="fas fa-chevron-left"></i> المرافق الصحية</a></li>
+                        <li><a href="#" onclick="app.navigate('reports'); return false;"><i class="fas fa-chevron-left"></i> التقارير</a></li>
+                        <li><a href="#" onclick="app.navigate('standards'); return false;"><i class="fas fa-chevron-left"></i> دليل المعايير</a></li>
+                    </ul>
+                </div>
+
+                <!-- Standards -->
+                <div class="footer-col">
+                    <h5 class="footer-col-title"><i class="fas fa-certificate"></i> المعايير المعتمدة</h5>
+                    <div class="footer-badges-container">
+                        <span class="footer-badge-item">JCI</span>
+                        <span class="footer-badge-item">HHFA</span>
+                        <span class="footer-badge-item">CBAHI</span>
+                        <span class="footer-badge-item">ISO 15189</span>
+                        <span class="footer-badge-item">WHO</span>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-col">
+                    <h5 class="footer-col-title"><i class="fas fa-address-card"></i> تواصل معنا</h5>
+                    <ul class="footer-contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i> الجمهورية اليمنية - محافظة إب</li>
+                        <li><i class="fas fa-building"></i> وزارة الصحة والبيئة</li>
+                        <li><i class="fas fa-envelope"></i> Kaidngat4@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> 711129611</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom-bar">
+                <div class="left">
+                    <i class="fas fa-copyright"></i> 2026 جميع الحقوق محفوظة
+                    <span style="margin: 0 0.3rem;">•</span>
+                    وزارة الصحة والبيئة
+                </div>
+                <div class="center">
+                    <i class="fas fa-laptop-code" style="color: var(--gold-300);"></i>
+                    هندسة وتطوير <strong>Dr/Salah Al-ahdel</strong>
+                </div>
+                <div class="right">
+                    <i class="fas fa-shield-check" style="color: var(--gold-300);"></i>
+                    توقيع إلكتروني معتمد
+                    <span style="margin: 0 0.3rem;">•</span>
+                    <span class="footer-sig-hash">SIG: YEM-MOH-IBB-2026</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================================
+         MODALS
+         ============================================================ -->
+
+    <!-- Facility Modal: إضافة منشأة صحية -->
+    <div class="modal-overlay" id="facilityModal" role="dialog" aria-modal="true" aria-labelledby="facilityModalTitle">
+        <div class="modal-content" style="max-width: 720px;">
+            <div class="modal-header">
+                <h3 id="facilityModalTitle">
+                    <i class="fas fa-plus-circle" style="color: var(--gold-300); margin-inline-end: 0.5rem;"></i>
+                    إضافة منشأة صحية جديدة
+                </h3>
+                <button class="modal-close" onclick="app.closeModal('facilityModal')" aria-label="إغلاق">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="facilityForm" onsubmit="event.preventDefault(); app.saveFacility();">
+                <div class="modal-body">
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="form-label" for="fName">اسم المنشأة <span style="color: var(--neon-red);">*</span></label>
+                            <input type="text" id="fName" class="form-input" placeholder="مثال: مستشفى إب العام" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="fType">نوع الملكية <span style="color: var(--neon-red);">*</span></label>
+                            <select id="fType" class="form-input" required>
+                                <option value="">-- اختر --</option>
+                                <option value="public">حكومي</option>
+                                <option value="private">خاص</option>
+                                <option value="ngo">أهلي / خيري</option>
+                                <option value="military">عسكري</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="fCategory">الفئة <span style="color: var(--neon-red);">*</span></label>
+                            <select id="fCategory" class="form-input" required>
+                                <option value="">-- اختر --</option>
+                                <option value="hospital">مستشفى</option>
+                                <option value="primary">مركز رعاية أولية</option>
+                                <option value="clinic">عيادة</option>
+                                <option value="lab">مختبر</option>
+                                <option value="pharmacy">صيدلية</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="fCity">المدينة / المنطقة <span style="color: var(--neon-red);">*</span></label>
+                            <input type="text" id="fCity" class="form-input" placeholder="مثال: إب" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="fManager">المدير / المسؤول</label>
+                            <input type="text" id="fManager" class="form-input" placeholder="اسم المدير الطبي">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="fLicense">رقم الترخيص</label>
+                            <input type="text" id="fLicense" class="form-input" placeholder="مثال: YEM-IBB-00X">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label" for="fAddress">العنوان التفصيلي</label>
+                            <input type="text" id="fAddress" class="form-input" placeholder="الشارع، الحي، أقرب نقطة دالة">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label" for="fNotes">ملاحظات إضافية</label>
+                            <textarea id="fNotes" class="form-input" rows="3" placeholder="أي معلومات إضافية عن المنشأة..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="app.closeModal('facilityModal')">
+                        <i class="fas fa-times"></i> إلغاء
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> حفظ المنشأة
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+        <div class="modal-content" style="max-width: 460px;">
+            <div class="modal-header">
+                <h3 id="confirmTitle">
+                    <i class="fas fa-exclamation-triangle" style="color: var(--neon-gold); margin-inline-end: 0.5rem;"></i>
+                    تأكيد العملية
+                </h3>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage" style="line-height: 1.8; color: var(--text-secondary); font-size: 0.95rem;"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('confirmModal')">إلغاء</button>
+                <button class="btn btn-danger" id="confirmBtn">تأكيد</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-sync-alt fa-spin" aria-hidden="true"></i>
+            <p>جاري التحميل...</p>
+        </div>
+    </div>
+
+    <!-- Application JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
