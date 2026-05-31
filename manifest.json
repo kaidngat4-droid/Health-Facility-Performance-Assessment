@@ -1,1 +1,116 @@
-manifest.jsonانشاءملف
+{
+  "name": "معيار PRO - نظام التقييم المعياري للمرافق الصحية",
+  "short_name": "معيار PRO",
+  "description": "نظام التقييم الإلكتروني المتكامل للمرافق الصحية العامة والخاصة في الجمهورية اليمنية",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#8B0000",
+  "orientation": "any",
+  "scope": "/",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["health", "medical", "productivity", "government"],
+  "icons": [
+    {
+      "src": "images/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/screenshot-mobile-1.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "لوحة التحكم الرئيسية"
+    },
+    {
+      "src": "images/screenshot-mobile-2.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "تقييم منشأة صحية"
+    },
+    {
+      "src": "images/screenshot-desktop-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "لوحة التحكم - عرض سطح المكتب"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "لوحة التحكم",
+      "short_name": "الرئيسية",
+      "description": "الوصول السريع إلى لوحة التحكم",
+      "url": "/index.html?page=dashboard",
+      "icons": [{ "src": "images/shortcut-dashboard.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "تقييم جديد",
+      "short_name": "تقييم",
+      "description": "بدء تقييم منشأة صحية جديدة",
+      "url": "/index.html?page=assessment",
+      "icons": [{ "src": "images/shortcut-assessment.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "المرافق الصحية",
+      "short_name": "المرافق",
+      "description": "قائمة المرافق الصحية المسجلة",
+      "url": "/index.html?page=facilities",
+      "icons": [{ "src": "images/shortcut-facilities.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "display_override": ["standalone", "fullscreen", "minimal-ui"],
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
+}
