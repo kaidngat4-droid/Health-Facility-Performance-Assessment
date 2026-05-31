@@ -1,1 +1,332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#8B0000">
+    <title>غير متصل - معيار PRO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --gold-300: #D4AF37;
+            --gold-600: #8B6914;
+            --neon-red: #ff073a;
+            --neon-green: #39ff14;
+            --bg-primary: #0a0a0f;
+            --bg-elevated: #141414;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .offline-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 500px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .offline-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .offline-icon i {
+            font-size: 4rem;
+            color: var(--gold-300);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .offline-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            animation: ripple 2s ease-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .offline-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--gold-300);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .offline-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .offline-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 7, 58, 0.1);
+            border: 1px solid rgba(255, 7, 58, 0.3);
+            color: var(--neon-red);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .offline-status .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--neon-red);
+            border-radius: 50%;
+            animation: blink 1s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .offline-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-offline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary-offline {
+            background: linear-gradient(135deg, var(--gold-300), var(--gold-600));
+            color: #0a0a0f;
+        }
+
+        .btn-primary-offline:hover {
+            filter: brightness(1.15);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline-offline {
+            background: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--gold-300);
+        }
+
+        .btn-outline-offline:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-300);
+        }
+
+        .offline-info {
+            margin-top: 2rem;
+            padding: 1.2rem;
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            text-align: right;
+        }
+
+        .offline-info h4 {
+            color: var(--gold-300);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .offline-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .offline-info li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 0.4rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .offline-info li i {
+            color: var(--neon-green);
+            font-size: 0.7rem;
+        }
+
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+
+        .footer-offline {
+            position: fixed;
+            bottom: 1rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #666;
+            z-index: 10;
+        }
+
+        .footer-offline strong {
+            color: var(--gold-300);
+        }
+
+        @media (max-width: 480px) {
+            .offline-title { font-size: 1.4rem; }
+            .offline-subtitle { font-size: 0.95rem; }
+            .offline-icon { width: 90px; height: 90px; }
+            .offline-icon i { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="offline-container">
+        <div class="offline-icon">
+            <i class="fas fa-wifi-slash"></i>
+        </div>
+
+        <h1 class="offline-title">لا يوجد اتصال بالإنترنت</h1>
+        <p class="offline-subtitle">
+            يبدو أنك غير متصل حالياً. بعض الميزات قد لا تكون متاحة، لكن يمكنك الاستمرار في العمل على البيانات المخزنة محلياً.
+        </p>
+
+        <div class="offline-status">
+            <span class="dot"></span>
+            <span>وضع عدم الاتصال</span>
+        </div>
+
+        <div class="offline-actions">
+            <button class="btn-offline btn-primary-offline" onclick="window.location.reload()">
+                <i class="fas fa-sync-alt"></i>
+                إعادة المحاولة
+            </button>
+            <a href="index.html" class="btn-offline btn-outline-offline">
+                <i class="fas fa-home"></i>
+                العودة للرئيسية (وضع عدم الاتصال)
+            </a>
+        </div>
+
+        <div class="offline-info">
+            <h4><i class="fas fa-info-circle"></i> ما يمكنك فعله في وضع عدم الاتصال:</h4>
+            <ul>
+                <li><i class="fas fa-check"></i> عرض البيانات المخزنة سابقاً</li>
+                <li><i class="fas fa-check"></i> إدخال تقييمات جديدة (ستتم المزامنة لاحقاً)</li>
+                <li><i class="fas fa-check"></i> تصفح دليل المعايير المخزن</li>
+                <li><i class="fas fa-check"></i> عرض التقارير المحفوظة</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-offline">
+        <i class="fas fa-shield-alt" style="color: var(--gold-300);"></i>
+        نظام التقييم المعياري PRO v3.0 | <strong>وزارة الصحة والبيئة - الجمهورية اليمنية</strong>
+    </div>
+
+    <script>
+        // Generate floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (10 + Math.random() * 20) + 's';
+            particle.style.width = (1 + Math.random() * 3) + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Auto-retry connection check
+        let retryCount = 0;
+        const maxRetries = 5;
+
+        function checkConnection() {
+            if (navigator.onLine) {
+                window.location.reload();
+                return;
+            }
+            retryCount++;
+            if (retryCount < maxRetries) {
+                setTimeout(checkConnection, 5000);
+            }
+        }
+
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+
+        setTimeout(checkConnection, 3000);
+    </script>
+</body>
+</html>
